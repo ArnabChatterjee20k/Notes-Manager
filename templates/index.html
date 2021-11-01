@@ -1,0 +1,84 @@
+<!-- headings and hr are given some special class for whiteness during dark mode -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes-Arnab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-dark">
+        <div class="container-fluid">
+            <form class="d-flex">
+                <input class="form-control me-2" id="searchTxt" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success mx-4 " type="button" id="darkmode">Dark</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container my-3 dark_bg">
+        <h3 class="white_dark">Add And View Your Notes</h3>
+
+        <div class="card my-3">
+            <div class="card-body dark_color">
+                <form action="/" method="post">
+                    <div class="form-floating">
+                        <textarea class="form-control my-3 note_details" placeholder="Leave a comment here"
+                            id="addTitle" name="title"></textarea>
+                        <label for="floatingTextarea" class="note_label">Title</label>
+                    </div>
+                    <div class="form-floating">
+                        <textarea class="form-control my-3 note_details" placeholder="Leave a comment here" id="addTxt"
+                            name="message"></textarea>
+                        <label for="floatingTextarea" class="note_label">Add Note</label>
+                    </div>
+                    <div class="form-check my-3">
+                        <input class="form-check-input" type="checkbox" value="" id="imp_note" name="imp">
+                        <label class="form-check-label text-danger" for="imp_note">
+                            Important
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="addBtn">Add Note</button>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="noteContainer">
+            <hr class="white_dark">
+
+            <h3 class="white_dark">Your Notes</h3>
+
+            <hr class="white_dark">
+            <div class="row container-fluid" id="notesCard">
+                {% for i in data %}
+                <div class="card mx-1 my-1 dynamicCard {{ i.imp }}" style="width: 18rem" >
+                    <div class="card-body">
+                        <h5 class="card-title">{{i.title}}</h5>
+                        <p class="card-text">{{i.message}}</p>
+                        <form action="/delete/{{ i.id }}" >
+                        <button class="btn btn-primary formsubmit" id="{{ i.id }}">Delete Note</a>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
