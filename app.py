@@ -1,6 +1,6 @@
-from os import name
-from flask import Flask, render_template,request,redirect,session
+from flask import Flask, render_template,request,redirect,session,flash,url_for
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash,check_password_hash
 
 app=Flask(__name__)
 app.config['SECRET_KEY']='dljfldjfldjfljnb'
@@ -28,18 +28,22 @@ class Notes(db.Model):
 @app.route("/",methods=["GET","POST"])
 def first():
     # data=Notes.query.all() #not writing here as it will not update the content of data so better doing it after handling post.
-    if request.method=="POST":
-        res=request.form
-        if "imp" in res.keys():
-            imp="ye"
-        else:
-            imp="no"
-        new=Notes(title=res["title"],message=res["message"],imp=imp)
-        db.session.add(new)
-        db.session.commit()
-        # redirect("/")#it will only take us to the page instead updating the data variable
-    data=Notes.query.all()
-    return render_template("index.html",data=data)
+    if "user" in session:
+        user=session["user"]
+        if request.method=="POST":
+            res=request.form
+            if "imp" in res.keys():
+                imp="ye"
+            else:
+                imp="no"
+            new=Notes(title=res["title"],message=res["message"],imp=imp,username=user)
+            db.session.add(new)
+            db.session.commit()
+            # redirect("/")#it will only take us to the page instead updating the data variable
+        data=Notes.query.filter_by(username=user)
+        return render_template("index.html",data=data)
+    else:
+        return redirect("/login")
 
 @app.route("/delete/<int:id>")
 def delete(id):
@@ -51,7 +55,19 @@ def delete(id):
 @app.route("/login",methods=["GET","POST"])
 def log():
     if request.method=="POST":
-        return request.form
+        req=request.form
+        if req:
+            name=req.get("name")
+            password=req.get("password")
+        user=User.query.filter_by(name=name).first()
+        if user:
+            if check_password_hash(user.password,password):
+                session["user"]=user.name
+                return redirect("/")
+            else:
+                flash("Password not matching")
+        else:
+            flash("Not Found")
     return render_template("login.html")
 
 
@@ -60,11 +76,15 @@ def reg():
     if request.method=="POST":
         req=request.form
         name=req.get("name")
-        password=req.get("password")
-        new_user=User(name=name,password=password)
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect("/login")
+        user=User.query.filter_by(name=name).first()
+        if user:
+            flash(f"User {user.name} already exists")
+        else:
+            password=req.get("password")
+            password = generate_password_hash(password=password,method="sha256")
+            new_user=User(name=name,password=password)
+            db.session.add(new_user)
+            db.session.commit()
     return render_template("login.html")
 
 

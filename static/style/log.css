@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+.modal{
+    display: none;
+}
 body{
     height: 100vh;
     width: 100%;
@@ -40,12 +43,12 @@ nav ul li{
     cursor: pointer;
 }
 .active{
-    text-decoration:0.2rem underline black ;
+    text-decoration:0.4rem underline black ;
     text-shadow: 0 0 black; 
 }
 nav ul li:hover{
     /* background-color: black; */
-    text-decoration:0.2rem underline black ;
+    text-decoration:0.4rem underline rgba(0, 0, 0, 0.288) ;
     text-shadow: 0 0 black;
 }
 
@@ -108,7 +111,8 @@ h1{
 .container .centerbox form .inputbox input:focus ~ label,
 .container .centerbox form .inputbox input:valid ~ label{
     /* top: -0.1rem; */
-    transform: translateY(-1rem)
+    transform: translateY(-1rem);
+    font-size: 0.8rem;
 }
 
 .container .centerbox form input[type=submit]{
@@ -141,5 +145,21 @@ h1{
         width: 5rem;
         /* padding: 5px; */
         font-size: 0.9rem;
+    }
+    .container .centerbox form .inputbox label{
+        transition:  0.5s;
+        position:absolute;
+        top: 1.5rem;
+        left: 0;
+    }
+    nav h2{
+        font-size: 1.5rem;
+    }
+    nav ul li{
+        font-size: 0.6rem;
+    }
+    nav ul li:hover{
+        text-decoration:0.3rem underline rgba(0, 0, 0, 0.288) ;
+        text-shadow: 0 0 black;
     }
 }
