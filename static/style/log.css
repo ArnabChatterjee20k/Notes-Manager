@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #dae4d1;
+    /* justify-content: center; */
+}
+nav{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    background-color: rgb(235, 229, 177);
+    border: none;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+}
+nav h2{
+    flex: 1;
+    margin-left: 1rem;
+    font-size: 2rem;
+}
+nav ul{
+    margin: 0 2rem;
+}
+nav ul li{
+    display: inline-block;
+    margin: 0 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.active{
+    text-decoration:0.2rem underline black ;
+    text-shadow: 0 0 black; 
+}
+nav ul li:hover{
+    /* background-color: black; */
+    text-decoration:0.2rem underline black ;
+    text-shadow: 0 0 black;
+}
+
+/* for form containers */
+label,h1,input{
+    color: whitesmoke;
+}
+label,input{
+    font-size: 1.3rem;
+}
+.container{
+    border-radius: 5px;
+    width: 50%;
+    height: 80%;   
+    background-color: rgba(0,0,0,0.7);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1{
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    font-size: 2rem;
+    
+    
+}
+.container .centerbox{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container .centerbox form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container .centerbox form .inputbox{
+    width: 80%;
+    position: relative;
+}
+.container .centerbox form .inputbox input{
+    width: 100%;
+    margin: 2rem 0;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #fff;
+    outline: none;
+}
+
+.container .centerbox form .inputbox label{
+    transition:  0.5s;
+    position:absolute;
+    top: 1rem;
+    left: 0;
+}
+.container .centerbox form .inputbox input:focus ~ label,
+.container .centerbox form .inputbox input:valid ~ label{
+    /* top: -0.1rem; */
+    transform: translateY(-1rem)
+}
+
+.container .centerbox form input[type=submit]{
+    width: 7rem;
+    margin-top: 1rem;
+    padding: 5px;
+    background-color: transparent;
+    background-color: #0d6efd;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+.container .centerbox form input[type=submit]:hover{
+    background-color: #397fe9;
+}
+
+/* media query */
+@media only screen and (max-width: 900px){
+    .container .centerbox form .inputbox{
+        width: 60%;
+    }
+    label,input{
+        font-size: 0.8rem;
+    }
+    h1{
+        font-size: 1rem;
+    }
+    .container .centerbox form input[type=submit]{
+        width: 5rem;
+        /* padding: 5px; */
+        font-size: 0.9rem;
+    }
+}

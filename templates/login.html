@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='../static/style/log.css') }}"> -->
+    <link rel="stylesheet" href="../static/style/log.css">
+    
+</head>
+
+<body>
+    <nav>
+        <h2>Notes</h2>
+        <ul>
+            <li class="link">Register</li>
+            <li class="link active">Login</li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1 id="title">Login</h1>
+        <div class="centerbox">
+            <form id="form" method="post" action="/login">
+                <div class="inputbox">
+                    <input type="text" name="name" autocomplete="off" required id="name">
+                    <label for="name">username</label>
+                </div>
+
+                <div class="inputbox">
+                    <input type="password" name="password" autocomplete="off" required id="password">
+                    <label for="password">Password</label>
+                </div>
+                <input type="submit" value="Submit" id="submit">
+            </form>
+        </div>
+
+    </div>
+    <script src="../static/js/log.js"></script>
+</body>
+
+</html>
