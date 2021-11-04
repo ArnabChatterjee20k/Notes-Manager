@@ -6,8 +6,8 @@ app=Flask(__name__)
 app.config['SECRET_KEY']='dljfldjfldjfljnb'
 
 # Database config
-# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://LpEGgtLxrN:gWW1MfFmp9@remotemysql.com/LpEGgtLxrN"
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://LpEGgtLxrN:gWW1MfFmp9@remotemysql.com/LpEGgtLxrN"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 db=SQLAlchemy(app)
 
@@ -89,5 +89,5 @@ def reg():
 
 
 if __name__=="__main__":
-    db.create_all()
-    app.run(debug=True)
+
+    app.run()
