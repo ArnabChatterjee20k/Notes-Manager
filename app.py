@@ -85,9 +85,11 @@ def reg():
             new_user=User(name=name,password=password)
             db.session.add(new_user)
             db.session.commit()
+            session["user"] = name
+            return redirect("/")
     return render_template("login.html")
 
 
 if __name__=="__main__":
 
-    app.run()
+    app.run(debug=True)
