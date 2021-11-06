@@ -166,6 +166,7 @@ h1{
     .container{
         height: 50%;
         overflow: hidden;
+        overflow-y: scroll
     }
     .container h1{
         margin-bottom: 1rem;
