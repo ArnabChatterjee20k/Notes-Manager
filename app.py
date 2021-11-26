@@ -6,7 +6,7 @@ app=Flask(__name__)
 app.config['SECRET_KEY']='dljfldjfldjfljnb'
 
 # Database config
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://LpEGgtLxrN:gWW1MfFmp9@remotemysql.com/LpEGgtLxrN"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://username:password@remotemysql.com/dbname"
 # app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 db=SQLAlchemy(app)
