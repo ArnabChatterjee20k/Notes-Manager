@@ -6,7 +6,8 @@ app=Flask(__name__)
 app.config['SECRET_KEY']='dljfldjfldjfljnb'
 
 # Database config
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://LpEGgtLxrN:gWW1MfFmp9@remotemysql.com/LpEGgtLxrN"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://LpEGgtLxrN:gWW1MfFmp9@remotemysql.com/LpEGgtLxrN"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://uwvbwdehilvxvt:f96d60639aee6ca061637c0080fcfa295f9228cfe69754d1a7cc85eb7ebb7712@ec2-18-213-179-70.compute-1.amazonaws.com:5432/d2bal6alstn2ij"#heroku
 # app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 db=SQLAlchemy(app)
